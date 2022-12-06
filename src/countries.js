@@ -67,6 +67,8 @@ const Countries = () => {
     country => country.states.length > 0
   )
 
+  console.log(countries)
+
   return (
     <Container>
       <Typography variant='h1' sx={{ textAlign: 'center' }}>

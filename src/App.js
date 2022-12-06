@@ -5,6 +5,7 @@ import Home from './home'
 import Languages from './languages'
 import Layout from './layout'
 import Countries from './countries'
+import Continents from './continents'
 
 const privateClient = new ApolloClient({
   cache: new InMemoryCache(),
@@ -21,6 +22,7 @@ export default function App () {
             <Route path='/home' element={<Home />} />
             <Route path='/countries' element={<Countries />} />
             <Route path='/languages' element={<Languages />} />
+            <Route path='/continents' element={<Continents />} />
           </Route>
         </Routes>
       </BrowserRouter>

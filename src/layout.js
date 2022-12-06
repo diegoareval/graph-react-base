@@ -20,6 +20,7 @@ const Layout = () => {
           <Tab value='home' label='home' />
           <Tab value='countries' label='countries' />
           <Tab value='languages' label='languages' />
+          <Tab value='continents' label='continents' />
         </Tabs>
       </Box>
       <Outlet />
