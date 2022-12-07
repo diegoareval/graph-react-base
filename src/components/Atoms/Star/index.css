@@ -1,0 +1,19 @@
+.button-animated {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: none;
+
+}
+.on {
+  color:  #ad9400;
+}
+.off {
+  color: #ccc;
+}
+
+.star-rating{
+padding: 20px
+}
+
+

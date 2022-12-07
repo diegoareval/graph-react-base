@@ -1,4 +1,4 @@
-import {useRef, useState} from 'react'
+import {useContext, useRef, useState} from 'react'
 import {
     Typography,
     Container,
@@ -14,6 +14,9 @@ import { useNavigate } from 'react-router-dom'
 import { gql, useQuery, useLazyQuery } from '@apollo/client'
 import Title from "../../Atoms/Title";
 import Modal from "../../Organisms/Modal";
+import {FavoritesContext} from "../../../Provider/FavoritesProvider";
+import StarRating from "../../Atoms/Star";
+import {isExistOnFavorites} from "../../../utils";
 
 const COUNTRIES = gql`
     query Countries {
@@ -60,6 +63,7 @@ const COUNTRY = gql`
 `
 
 const CountryTemplate = () => {
+    const {favorites} = useContext(FavoritesContext);
     const { loading, error, data } = useQuery(COUNTRIES)
     const modalRef = useRef()
     const [open, setOpen] = useState(false);
@@ -79,9 +83,6 @@ const CountryTemplate = () => {
     }
 
 
-
-
-
     return (
         <Container>
             <Title title={"Countries"}/>
@@ -92,21 +93,31 @@ const CountryTemplate = () => {
                 <Box sx={{ textAlign: 'center', padding: '.5rem' }}>
                     {countriesWithStates.length} Countries with states
                 </Box>
+                <Box sx={{ textAlign: 'center', padding: '.5rem' }}>
+                    {favorites.countries.length} Favorites
+                </Box>
                 {countries.map(country => (
-                    <Box onClick={()=> showCountry(country)}
-                        key={country.code}
-                        sx={{
-                            padding: '.5rem 0rem',
-                            color: country.states.length > 0 ? 'blue' : '#999'
-                        }}
-                    >
-                        <a href='#'>
-                            {country.emoji} {country.name}{' '}
-                            {country.states.length > 0 && country.states.length}{' '}
-                            {country.states.length > 1 && 'States'}
-                            {country.states.length === 1 && 'State'}
-                        </a>
-                    </Box>
+                    <>
+                        <Box
+                             key={country.code}
+                             sx={{
+                                 padding: '.5rem 0rem',
+                                 color: country.states.length > 0 ? 'blue' : '#999'
+                             }}
+                        >
+                          <div style={{display: "flex"}}>
+                             <div> <StarRating active={isExistOnFavorites(favorites.countries, country)} item={country} keyItem={"countries"} /></div>
+                              <div style={{marginTop: "20px"}} onClick={()=> showCountry(country)}>
+                                  <a href='#'>
+                                      {country.emoji} {country.name}{' '}
+                                      {country.states.length > 0 && country.states.length}{' '}
+                                      {country.states.length > 1 && 'States'}
+                                      {country.states.length === 1 && 'State'}
+                                  </a>
+                              </div>
+                          </div>
+                        </Box>
+                    </>
                 ))}
             </Box>
 

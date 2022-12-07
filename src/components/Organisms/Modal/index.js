@@ -3,7 +3,6 @@ import BoxElement from "../../Molecules/Box"
 
 const Modal = ({toggleModal, open, info}) => {
     const {name, code, currency, emoji, phone, states = []} = info
-    console.log(info)
 
     return (
         <Dialog open={open} onClose={() => toggleModal(false)} aria-labelledby="form-dialog-title">
