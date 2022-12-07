@@ -1,4 +1,5 @@
-import {useContext, useRef, useState} from 'react'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import {useContext, useState} from 'react'
 import {
     Container,
     Box
@@ -10,13 +11,11 @@ import {FavoritesContext} from "../../../Provider/FavoritesProvider";
 import StarRating from "../../Atoms/Star";
 import {isExistOnFavorites} from "../../../utils";
 import {COUNTRIES} from "../../../utils/queries";
-
-
+import TextSecondary from "../../Atoms/TextSecondary";
 
 const CountryTemplate = () => {
     const {favorites} = useContext(FavoritesContext);
     const { loading, error, data } = useQuery(COUNTRIES)
-    const modalRef = useRef()
     const [open, setOpen] = useState(false);
     const [item, setItem] = useState(null)
     if (loading) return <>loading...</>
@@ -33,21 +32,13 @@ const CountryTemplate = () => {
         setOpen(true)
     }
 
-
-
     return (
         <Container>
             <Title title={"Countries"}/>
             <Box>
-                <Box sx={{ textAlign: 'center', padding: '.5rem' }}>
-                    {countries.length} Countries
-                </Box>
-                <Box sx={{ textAlign: 'center', padding: '.5rem' }}>
-                    {countriesWithStates.length} Countries with states
-                </Box>
-                <Box sx={{ textAlign: 'center', padding: '.5rem' }}>
-                    {favorites.countries.length} Favorites
-                </Box>
+                <TextSecondary title={`${countries.length} Countries`}/>
+                <TextSecondary title={`${countriesWithStates.length}  Countries with states`}/>
+                <TextSecondary title={`${favorites.countries.length}  Favorites`}/>
                 {countries.map(country => (
                     <div key={country.code}>
                         <Box
@@ -71,11 +62,7 @@ const CountryTemplate = () => {
                     </div>
                 ))}
             </Box>
-
-
-           <div ref={modalRef}>
             {open && item &&  <Modal info={item} open={open} toggleModal={setOpen}/>}
-           </div>
         </Container>
     )
 }

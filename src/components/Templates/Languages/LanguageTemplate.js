@@ -1,6 +1,5 @@
 import {useContext} from "react"
 import {
-    Box,
     Container,
     List,
     ListItem
@@ -11,6 +10,7 @@ import {FavoritesContext} from "../../../Provider/FavoritesProvider";
 import StarRating from "../../Atoms/Star";
 import {isExistOnFavorites} from "../../../utils";
 import {LANGUAGES} from "../../../utils/queries";
+import TextSecondary from "../../Atoms/TextSecondary";
 
 const LanguageTemplate = () => {
     const { loading, error, data } = useQuery(LANGUAGES)
@@ -23,13 +23,8 @@ const LanguageTemplate = () => {
     return (
         <Container>
             <Title title={"Languages"}/>
-            <Box sx={{ textAlign: 'center', padding: '.5rem' }}>
-                {languages.length} Languages
-            </Box>
-            <Box sx={{ textAlign: 'center', padding: '.5rem' }}>
-                {favorites.languages.length} Favorites
-            </Box>
-
+            <TextSecondary title={`${languages.length} Languages`}/>
+            <TextSecondary title={`${favorites.languages.length} Favorites`}/>
             <List>
                 {languages.map(lang => (
                     <ListItem key={lang.code}>
