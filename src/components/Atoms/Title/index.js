@@ -1,13 +1,11 @@
 import { Container, Typography } from '@mui/material'
 
-const Continents = () => {
+const Title = ({title}) => {
     return (
-        <Container>
             <Typography variant='h1' sx={{ textAlign: 'center' }}>
-                Continents page
+                {title}
             </Typography>
-        </Container>
     )
 }
 
-export default Continents
+export default Title

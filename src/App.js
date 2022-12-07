@@ -1,11 +1,11 @@
 import './index.css'
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
 import { Link, BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './home'
-import Languages from './languages'
-import Layout from './layout'
-import Countries from './countries'
-import Continents from './continents'
+import Home from './pages/home'
+import Languages from './pages/languages'
+import Layout from './components/Organisms/Layout'
+import Countries from './pages/countries'
+import Continents from './pages/continents'
 
 const privateClient = new ApolloClient({
   cache: new InMemoryCache(),
