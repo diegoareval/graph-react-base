@@ -43,7 +43,7 @@ export const COUNTRIES = gql`
 `
 
 export const COUNTRY = gql`
-    query Country($code: String!) {
+    query Country($code: ID!) {
         country(code: $code) {
             code
             name

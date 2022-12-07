@@ -34,6 +34,7 @@ const CountryTemplate = () => {
     }
 
 
+
     return (
         <Container>
             <Title title={"Countries"}/>
@@ -48,9 +49,8 @@ const CountryTemplate = () => {
                     {favorites.countries.length} Favorites
                 </Box>
                 {countries.map(country => (
-                    <>
+                    <div key={country.code}>
                         <Box
-                             key={country.code}
                              sx={{
                                  padding: '.5rem 0rem',
                                  color: country.states.length > 0 ? 'blue' : '#999'
@@ -68,7 +68,7 @@ const CountryTemplate = () => {
                               </div>
                           </div>
                         </Box>
-                    </>
+                    </div>
                 ))}
             </Box>
 
