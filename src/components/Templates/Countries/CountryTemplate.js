@@ -1,66 +1,17 @@
 import {useContext, useRef, useState} from 'react'
 import {
-    Typography,
     Container,
-    List,
-    Box,
-    MenuItem,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Dialog, DialogTitle
+    Box
 } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import { gql, useQuery, useLazyQuery } from '@apollo/client'
+import {  useQuery } from '@apollo/client'
 import Title from "../../Atoms/Title";
 import Modal from "../../Organisms/Modal";
 import {FavoritesContext} from "../../../Provider/FavoritesProvider";
 import StarRating from "../../Atoms/Star";
 import {isExistOnFavorites} from "../../../utils";
+import {COUNTRIES} from "../../../utils/queries";
 
-const COUNTRIES = gql`
-    query Countries {
-        countries {
-            code
-            name
-            phone
-            languages {
-                code
-                name
-                native
-            }
-            currency
-            emoji
-            emojiU
-            states {
-                name
-                code
-            }
-        }
-    }
-`
 
-const COUNTRY = gql`
-    query Country($code: String!) {
-        country(code: $code) {
-            code
-            name
-            phone
-            languages {
-                code
-                name
-                native
-            }
-            currency
-            emoji
-            emojiU
-            states {
-                name
-                code
-            }
-        }
-    }
-`
 
 const CountryTemplate = () => {
     const {favorites} = useContext(FavoritesContext);

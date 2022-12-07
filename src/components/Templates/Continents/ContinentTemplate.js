@@ -1,19 +1,13 @@
 import {Box, Container, List, ListItem} from '@mui/material'
-import { gql, useQuery } from '@apollo/client'
+import {  useQuery } from '@apollo/client'
 import Title from "../../Atoms/Title";
 import {useContext} from "react";
 import {FavoritesContext} from "../../../Provider/FavoritesProvider";
 import StarRating from "../../Atoms/Star";
 import {isExistOnFavorites} from "../../../utils";
+import {CONTINENTS} from "../../../utils/queries";
 
-const CONTINENTS = gql`
-    query Continents {
-        continents {
-            name
-            code
-        }
-    }
-`
+
 const ContinentTemplate = () => {
     const {favorites} = useContext(FavoritesContext);
     const { loading, error, data } = useQuery(CONTINENTS)

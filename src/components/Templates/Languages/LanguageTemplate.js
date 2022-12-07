@@ -2,26 +2,15 @@ import {useContext} from "react"
 import {
     Box,
     Container,
-    Typography,
     List,
     ListItem
 } from '@mui/material'
-import { gql, useQuery } from '@apollo/client'
+import {  useQuery } from '@apollo/client'
 import Title from "../../Atoms/Title";
 import {FavoritesContext} from "../../../Provider/FavoritesProvider";
 import StarRating from "../../Atoms/Star";
 import {isExistOnFavorites} from "../../../utils";
-
-const LANGUAGES = gql`
-    query Languages {
-        languages {
-            code
-            name
-            native
-            rtl
-        }
-    }
-`
+import {LANGUAGES} from "../../../utils/queries";
 
 const LanguageTemplate = () => {
     const { loading, error, data } = useQuery(LANGUAGES)
